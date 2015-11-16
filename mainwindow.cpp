@@ -3,16 +3,11 @@
 #include "toolbar.h"
 
 #include <QMessageBox>
-#include <QFileDialog>
-#include <QLayout>
 #include <QFile>
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
-
     // Poor man's SASS
     QFile f(":/styles/assets/styles/style.css");
     f.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -32,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QMessageBox::warning(0, "QtAV error", "Can't create video renderer");
         return;
     }
-    ui->centralWidget->layout()->addWidget(m_vo->widget());
+    setCentralWidget(m_vo->widget());
 
     m_player = new QtAV::AVPlayer(this);
     m_player->setRenderer(m_vo);
@@ -45,8 +40,10 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sub->installTo(m_player);
 
     m_t = new Toolbar(this);
-    //ui->centralWidget->layout()->addWidget(m_t);
-    //ui->centralWidget->layout()->setAlignment(m_t, Qt::AlignHCenter);
+    //QVBoxLayout* l = new QVBoxLayout();
+    //m_vo->widget()->setLayout(l);
+    //m_vo->widget()->layout()->addWidget(m_t);
+    //m_vo->widget()->layout()->setAlignment(m_t, Qt::AlignHCenter | Qt::AlignBottom);
 
     qApp->installEventFilter(this);
 }
@@ -60,9 +57,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
     delete m_player;
     delete m_vo;
     delete m_sub;
-    delete m_t;
 }

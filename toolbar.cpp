@@ -13,14 +13,9 @@ Toolbar::Toolbar(MainWindow *parent) :
     ui->setupUi(this);
     win = parent;
 
-    opacity = new QGraphicsOpacityEffect(this);
-    opacity->setOpacity(0);
-    setGraphicsEffect(opacity);
-    animation = new QPropertyAnimation(opacity, "opacity");
-    animation->setEasingCurve(QEasingCurve::InCubic);
     moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(onMouseTimerTimeout()));
-    moveTimer->start(2000);
+    moveTimer->start(1000);
     appear();
 
     connect(ui->toggle, &QPushButton::clicked, this, &Toolbar::onToggleBtnClicked);
@@ -37,22 +32,14 @@ Toolbar::~Toolbar()
 
 void Toolbar::appear()
 {
-    animation->stop();
-    animation->setDuration(1000);
-    animation->setStartValue(opacity->opacity());
-    animation->setEndValue(1.0);
-    animation->start();
     appearing = true;
+    show();
 }
 
 void Toolbar::disappear()
 {
-    animation->stop();
-    animation->setDuration(1000);
-    animation->setStartValue(opacity->opacity());
-    animation->setEndValue(0.0);
-    animation->start();
     appearing = false;
+    hide();
 }
 
 void Toolbar::onToggleBtnClicked()
@@ -77,7 +64,9 @@ void Toolbar::onFullscreenBtnClicked()
     if (win->windowState().testFlag(Qt::WindowFullScreen))
         win->showMaximized();
     else
+    {
         win->showFullScreen();
+    }
 }
 
 void Toolbar::onOpenBtnClicked()

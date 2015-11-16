@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    toolbar.cpp
+    toolbar.cpp \
+    clayout.cpp
 
 HEADERS  += mainwindow.h \
-    toolbar.h
+    toolbar.h \
+    clayout.h
 
 FORMS    += mainwindow.ui \
     toolbar.ui
