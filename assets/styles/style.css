@@ -1,0 +1,164 @@
+#TrackLength {
+    qproperty-alignment: AlignRight;
+}
+#TrackName {
+    qproperty-alignment: AlignCenter;
+}
+
+QMainWindow, QDialog {
+    background: @cgreylight;
+    qproperty-windowIcon: url(:/images/assets/images/icon.png);
+}
+
+QMainWindow {
+    background: black;
+}
+
+QPushButton {
+    background-color: @cpurple;
+    border: none;
+    width: 76px;
+    height: 76px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    font-family: Gisha;
+}
+QPushButton:hover {
+    background-color: @cblue;
+}
+QPushButton:pressed {
+    background-color: @cgrey;
+}
+
+QLabel {
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    font-family: Gisha;
+}
+
+#TrackSlider::groove:horizontal {
+    border: 1px solid #bbb;
+    background: white;
+    height: 10px;
+    border-radius: 4px;
+}
+#VolumeSlider {
+    margin: 8px;
+}
+#VolumeSlider::groove:vertical {
+    border: 1px solid #bbb;
+    background: white;
+    width: 10px;
+    border-radius: 4px;
+}
+#TrackSlider::sub-page {
+    background: @cpurple;
+    border: none;
+    height: 8px;
+}
+#TrackSlider::add-page {
+    background: @cgrey;
+    border: none;
+    height: 8px;
+}
+#TrackSlider::handle {
+    width: 0px;
+    height: 0px;
+}
+#VolumeSlider::sub-page {
+    background: @cgrey;
+    border: none;
+    width: 8px;
+}
+#VolumeSlider::add-page {
+    background: @cpurple;
+    border: none;
+    width: 8px;
+}
+#VolumeSlider::handle {
+    background: @cblue;
+    width: 8px;
+    height: 20px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-top: -1px;
+}
+
+#MainWindow {
+    text-align: center;
+}
+#Toolbar {
+    text-align: center;
+}
+
+#toggle {
+    background-color: @cpurple;
+    border-image: url(:/images/assets/images/appbar.control.play.png);
+}
+#toggle:hover {
+    background-color: @cblue;
+}
+#toggle:pressed {
+    background-color: @cpurple;
+}
+
+#fullscreen {
+    background-color: @corange;
+    border-image: url(:/images/assets/images/appbar.fullscreen.box.png);
+}
+#fullscreen:hover {
+    background-color: @cblue;
+}
+#fullscreen:pressed {
+    background-color: @corange;
+}
+
+#open {
+    background-color: @cyellow;
+    border-image: url(:/images/assets/images/appbar.film.select.png);
+}
+#open:hover {
+    background-color: @cblue;
+}
+#open:pressed {
+    background-color: @cyellow;
+}
+
+#sub {
+    background-color: @cgreen;
+    border-image: url(:/images/assets/images/appbar.text.sans.png);
+}
+#sub:hover {
+    background-color: @cblue;
+}
+#sub:pressed {
+    background-color: @cgreen;
+}
+
+#minimize {
+    background-color: @cgreylight;
+    border-image: url(:/images/assets/images/appbar.app.minus.png);
+}
+#minimize:hover {
+    background-color: @cblue;
+}
+#minimize:pressed {
+    background-color: @cpurple;
+}
+
+/* Popups */
+QTextBrowser {
+    border: none;
+    background: @cgrey;
+
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    font-family: Gisha;
+}

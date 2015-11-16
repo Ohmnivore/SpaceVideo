@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>assets/images/appbar.control.play.png</file>
+        <file>assets/images/appbar.film.select.png</file>
+        <file>assets/images/appbar.fullscreen.box.png</file>
+        <file>assets/images/appbar.text.sans.png</file>
+        <file>assets/images/icon.ico</file>
+        <file>assets/images/icon.png</file>
+        <file>assets/images/appbar.app.minus.png</file>
+        <file>assets/images/appbar.control.pause.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>assets/fonts/AlteHaasGroteskRegular.ttf</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file>assets/styles/style.css</file>
+        <file>assets/styles/vars.css</file>
+    </qresource>
+</RCC>
