@@ -3,8 +3,9 @@
 
 #include <QString>
 #include <QFileDialog>
-#include <QGraphicsEffect>
-#include <QPropertyAnimation>
+#include <VLCQtCore/Enums.h>
+#include <VLCQtCore/Media.h>
+#include <VLCQtCore/Video.h>
 
 Toolbar::Toolbar(MainWindow *parent) :
     QWidget(parent),
@@ -44,18 +45,14 @@ void Toolbar::disappear()
 
 void Toolbar::onToggleBtnClicked()
 {
-    if (!win->m_player->isPlaying())
+    win->m_player->togglePause();
+    if (win->m_player->state() == Vlc::Playing)
     {
-        win->m_player->play();
-        ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.pause.png"));
+        ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.play.png"));
     }
     else
     {
-        win->m_player->pause(!win->m_player->isPaused());
-        if (win->m_player->isPaused())
-            ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.play.png"));
-        else
-            ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.pause.png"));
+        ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.pause.png"));
     }
 }
 
@@ -71,16 +68,22 @@ void Toolbar::onFullscreenBtnClicked()
 
 void Toolbar::onOpenBtnClicked()
 {
-    QString file = QFileDialog::getOpenFileName(0, "Open a media file");
-    if (!file.isEmpty())
-        win->m_player->play(file);
+    QString file = QFileDialog::getOpenFileName(this, "Open file", QString(), "Multimedia files(*)");
+    if (file.isEmpty())
+        return;
+    VlcMedia* _media = new VlcMedia(file, true, win->m_inst);
+    win->m_player->open(_media);
+    ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.pause.png"));
 }
 
 void Toolbar::onSubBtnClicked()
 {
-    QString file = QFileDialog::getOpenFileName(0, "Open a media file");
-    if (!file.isEmpty())
-        win->m_sub->setFile(file);
+    QString file = QFileDialog::getOpenFileName(this, "Open file", QString(), "Subtitle files(*)");
+    if (file.isEmpty())
+        return;
+    win->m_player->video()->setSubtitleFile(file);
+    qDebug() << win->m_player->video()->subtitleDescription();
+    qDebug() << win->m_player->video()->subtitleIds();
 }
 
 void Toolbar::onMinimizeBtnClicked()

@@ -2,9 +2,8 @@
 #define TOOLBAR_H
 
 #include "mainwindow.h"
+
 #include <QWidget>
-#include <QGraphicsOpacityEffect>
-#include <QPropertyAnimation>
 #include <QTimer>
 
 namespace Ui {

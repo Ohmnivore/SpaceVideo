@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QtAV>
 
+#include <VLCQtCore/Common.h>
+#include <VLCQtCore/Instance.h>
+#include <VLCQtCore/MediaPlayer.h>
+#include <VLCQtWidgets/WidgetVideo.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -14,9 +19,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    QtAV::AVPlayer* m_player;
-    QtAV::VideoOutput* m_vo;
-    QtAV::SubtitleFilter* m_sub;
+    VlcInstance* m_inst;
+    VlcMediaPlayer* m_player;
+    VlcWidgetVideo* m_vid;
     Toolbar* m_t;
 
     explicit MainWindow(QWidget* parent = 0);
