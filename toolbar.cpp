@@ -13,10 +13,10 @@ Toolbar::Toolbar(MainWindow *parent) :
     ui->setupUi(this);
     win = parent;
 
-    QGraphicsOpacityEffect* effect = new QGraphicsOpacityEffect(this);
-    effect->setProperty("opacity", 0.0);
-    this->setGraphicsEffect(effect);
-    animation = new QPropertyAnimation(graphicsEffect(), "opacity");
+    opacity = new QGraphicsOpacityEffect(this);
+    opacity->setOpacity(0);
+    setGraphicsEffect(opacity);
+    animation = new QPropertyAnimation(opacity, "opacity");
     animation->setEasingCurve(QEasingCurve::InCubic);
     moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(onMouseTimerTimeout()));
@@ -39,7 +39,7 @@ void Toolbar::appear()
 {
     animation->stop();
     animation->setDuration(1000);
-    animation->setStartValue(graphicsEffect()->property("opacity"));
+    animation->setStartValue(opacity->opacity());
     animation->setEndValue(1.0);
     animation->start();
     appearing = true;
@@ -48,8 +48,8 @@ void Toolbar::appear()
 void Toolbar::disappear()
 {
     animation->stop();
-    animation->setDuration(2000);
-    animation->setStartValue(graphicsEffect()->property("opacity"));
+    animation->setDuration(1000);
+    animation->setStartValue(opacity->opacity());
     animation->setEndValue(0.0);
     animation->start();
     appearing = false;

@@ -45,8 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sub->installTo(m_player);
 
     m_t = new Toolbar(this);
-    ui->centralWidget->layout()->addWidget(m_t);
-    ui->centralWidget->layout()->setAlignment(m_t, Qt::AlignHCenter);
+    //ui->centralWidget->layout()->addWidget(m_t);
+    //ui->centralWidget->layout()->setAlignment(m_t, Qt::AlignHCenter);
 
     qApp->installEventFilter(this);
 }
@@ -54,11 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::MouseMove)
-  {
       m_t->onMouseMove();
-//    QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-//    statusBar()->showMessage(QString("Mouse move (%1,%2)").arg(mouseEvent->pos().x()).arg(mouseEvent->pos().y()));
-  }
   return false;
 }
 
@@ -68,4 +64,5 @@ MainWindow::~MainWindow()
     delete m_player;
     delete m_vo;
     delete m_sub;
+    delete m_t;
 }

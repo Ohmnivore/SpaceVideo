@@ -3,6 +3,7 @@
 
 #include "mainwindow.h"
 #include <QWidget>
+#include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QTimer>
 
@@ -16,6 +17,7 @@ class Toolbar : public QWidget
 
 public:
     MainWindow* win;
+    QGraphicsOpacityEffect* opacity;
     QPropertyAnimation* animation;
     bool appearing;
     QTimer* moveTimer;
