@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include <QWidget>
 #include <QPropertyAnimation>
+#include <QTimer>
 
 namespace Ui {
 class Toolbar;
@@ -17,6 +18,7 @@ public:
     MainWindow* win;
     QPropertyAnimation* animation;
     bool appearing;
+    QTimer* moveTimer;
 
     explicit Toolbar(MainWindow* parent);
     ~Toolbar();
@@ -30,6 +32,7 @@ public slots:
     void onOpenBtnClicked();
     void onSubBtnClicked();
     void onMinimizeBtnClicked();
+    void onMouseTimerTimeout();
 
 private:
     Ui::Toolbar* ui;

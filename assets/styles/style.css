@@ -99,7 +99,6 @@ QLabel {
 
 #toggle {
     background-color: @cpurple;
-    border-image: url(:/images/assets/images/appbar.control.play.png);
 }
 #toggle:hover {
     background-color: @cblue;

@@ -18,6 +18,9 @@ Toolbar::Toolbar(MainWindow *parent) :
     this->setGraphicsEffect(effect);
     animation = new QPropertyAnimation(graphicsEffect(), "opacity");
     animation->setEasingCurve(QEasingCurve::InCubic);
+    moveTimer = new QTimer(this);
+    connect(moveTimer, SIGNAL(timeout()), this, SLOT(onMouseTimerTimeout()));
+    moveTimer->start(2000);
     appear();
 
     connect(ui->toggle, &QPushButton::clicked, this, &Toolbar::onToggleBtnClicked);
@@ -35,7 +38,7 @@ Toolbar::~Toolbar()
 void Toolbar::appear()
 {
     animation->stop();
-    animation->setDuration(2000);
+    animation->setDuration(1000);
     animation->setStartValue(graphicsEffect()->property("opacity"));
     animation->setEndValue(1.0);
     animation->start();
@@ -49,14 +52,24 @@ void Toolbar::disappear()
     animation->setStartValue(graphicsEffect()->property("opacity"));
     animation->setEndValue(0.0);
     animation->start();
+    appearing = false;
 }
 
 void Toolbar::onToggleBtnClicked()
 {
     if (!win->m_player->isPlaying())
+    {
         win->m_player->play();
+        ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.pause.png"));
+    }
     else
+    {
         win->m_player->pause(!win->m_player->isPaused());
+        if (win->m_player->isPaused())
+            ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.play.png"));
+        else
+            ui->toggle->setIcon(QIcon(":/images/assets/images/appbar.control.pause.png"));
+    }
 }
 
 void Toolbar::onFullscreenBtnClicked()
@@ -88,6 +101,13 @@ void Toolbar::onMinimizeBtnClicked()
 
 void Toolbar::onMouseMove()
 {
+    moveTimer->start(moveTimer->interval());
     if (!appearing)
         appear();
+}
+
+void Toolbar::onMouseTimerTimeout()
+{
+    if (appearing)
+        disappear();
 }
