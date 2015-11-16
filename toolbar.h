@@ -32,6 +32,7 @@ public slots:
     void onSubBtnClicked();
     void onMinimizeBtnClicked();
     void onMouseTimerTimeout();
+    void onVSliderChanged(int);
 
 private:
     Ui::Toolbar* ui;

@@ -11,7 +11,7 @@ QMainWindow, QDialog {
 }
 
 QMainWindow {
-    background: @cgrey;
+    background: black;
 }
 
 QPushButton {
@@ -48,15 +48,6 @@ QLabel {
     height: 10px;
     border-radius: 4px;
 }
-#VolumeSlider {
-    margin: 8px;
-}
-#VolumeSlider::groove:vertical {
-    border: 1px solid #bbb;
-    background: white;
-    width: 10px;
-    border-radius: 4px;
-}
 #TrackSlider::sub-page {
     background: @cpurple;
     border: none;
@@ -71,23 +62,25 @@ QLabel {
     width: 0px;
     height: 0px;
 }
+
+#VolumeSlider {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    width: 14px;
+}
+#VolumeSlider::groove:vertical {
+    background: white;
+}
 #VolumeSlider::sub-page {
     background: @cgrey;
-    border: none;
-    width: 8px;
 }
 #VolumeSlider::add-page {
     background: @cpurple;
-    border: none;
-    width: 8px;
 }
 #VolumeSlider::handle {
     background: @cblue;
-    width: 8px;
     height: 20px;
-    margin-left: -1px;
-    margin-right: -1px;
-    margin-top: -1px;
 }
 
 #MainWindow {

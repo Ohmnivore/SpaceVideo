@@ -6,6 +6,7 @@
 #include <VLCQtCore/Enums.h>
 #include <VLCQtCore/Media.h>
 #include <VLCQtCore/Video.h>
+#include <VLCQtCore/Audio.h>
 
 Toolbar::Toolbar(MainWindow *parent) :
     QWidget(parent),
@@ -24,6 +25,7 @@ Toolbar::Toolbar(MainWindow *parent) :
     connect(ui->open, &QPushButton::clicked, this, &Toolbar::onOpenBtnClicked);
     connect(ui->sub, &QPushButton::clicked, this, &Toolbar::onSubBtnClicked);
     connect(ui->minimize, &QPushButton::clicked, this, &Toolbar::onMinimizeBtnClicked);
+    connect(ui->VolumeSlider, SIGNAL(valueChanged(int)), this, SLOT(onVSliderChanged(int)));
 }
 
 Toolbar::~Toolbar()
@@ -89,6 +91,11 @@ void Toolbar::onSubBtnClicked()
 void Toolbar::onMinimizeBtnClicked()
 {
     win->showMinimized();
+}
+
+void Toolbar::onVSliderChanged(int value)
+{
+    win->m_player->audio()->setVolume(value);
 }
 
 void Toolbar::onMouseMove()
