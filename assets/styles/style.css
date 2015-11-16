@@ -1,17 +1,6 @@
-#TrackLength {
-    qproperty-alignment: AlignRight;
-}
-#TrackName {
-    qproperty-alignment: AlignCenter;
-}
-
 QMainWindow, QDialog {
     background: @cgreylight;
     qproperty-windowIcon: url(:/images/assets/images/icon.png);
-}
-
-QMainWindow {
-    background: black;
 }
 
 QPushButton {
@@ -42,25 +31,24 @@ QLabel {
     font-family: Gisha;
 }
 
+#TrackSlider {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    height: 14px;
+}
 #TrackSlider::groove:horizontal {
-    border: 1px solid #bbb;
     background: white;
-    height: 10px;
-    border-radius: 4px;
 }
 #TrackSlider::sub-page {
     background: @cpurple;
-    border: none;
-    height: 8px;
 }
 #TrackSlider::add-page {
     background: @cgrey;
-    border: none;
-    height: 8px;
 }
 #TrackSlider::handle {
-    width: 0px;
-    height: 0px;
+    background: @cblue;
+    width: 20px;
 }
 
 #VolumeSlider {

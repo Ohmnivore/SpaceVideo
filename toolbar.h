@@ -18,6 +18,7 @@ public:
     MainWindow* win;
     bool appearing;
     QTimer* moveTimer;
+    QTimer* updateTimer;
 
     explicit Toolbar(MainWindow* parent);
     ~Toolbar();
@@ -32,7 +33,9 @@ public slots:
     void onSubBtnClicked();
     void onMinimizeBtnClicked();
     void onMouseTimerTimeout();
+    void onUpdateTimerTimeout();
     void onVSliderChanged(int);
+    void onHSliderChanged();
 
 private:
     Ui::Toolbar* ui;
