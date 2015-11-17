@@ -26,33 +26,52 @@ Options::~Options()
 void Options::updateVideo()
 {
     ui->videoBox->clear();
-    QStringList descr = win->m_player->video()->trackDescription();
-    QList<int> id = win->m_player->video()->trackIds();
-    for (int i = 0; i < descr.size(); ++i)
-        ui->videoBox->addItem(descr.at(i), id.at(i));
-    ui->videoBox->setCurrentIndex(win->m_player->video()->track());
+    if (win->m_player->video()->track() > 0)
+    {
+        qDebug() << win->m_player->video()->trackDescription();
+        qDebug() << win->m_player->video()->trackIds();
+        qDebug() << win->m_player->video()->track();
+
+        QStringList descr = win->m_player->video()->trackDescription();
+        QList<int> id = win->m_player->video()->trackIds();
+        for (int i = 0; i < descr.size(); ++i)
+            ui->videoBox->addItem(descr.at(i), id.at(i));
+        ui->videoBox->setCurrentIndex(id.indexOf(win->m_player->video()->track()));
+    }
 }
 
 void Options::updateAudio()
 {
     ui->audioBox->clear();
-    QStringList descr = win->m_player->audio()->trackDescription();
-    QList<int> id = win->m_player->audio()->trackIds();
-    for (int i = 0; i < descr.size(); ++i)
-        ui->audioBox->addItem(descr.at(i), id.at(i));
-    ui->audioBox->setCurrentIndex(win->m_player->audio()->track());
+    if (win->m_player->audio()->track() > 0)
+    {
+        qDebug() << win->m_player->audio()->trackDescription();
+        qDebug() << win->m_player->audio()->trackIds();
+        qDebug() << win->m_player->audio()->track();
+
+        QStringList descr = win->m_player->audio()->trackDescription();
+        QList<int> id = win->m_player->audio()->trackIds();
+        for (int i = 0; i < descr.size(); ++i)
+            ui->audioBox->addItem(descr.at(i), id.at(i));
+        ui->audioBox->setCurrentIndex(id.indexOf(win->m_player->audio()->track()));
+    }
 }
 
 void Options::updateSubtitles()
 {
-    qDebug() << win->m_player->video()->subtitleDescription();
-
     ui->subtitleBox->clear();
-    QStringList descr = win->m_player->video()->subtitleDescription();
-    QList<int> id = win->m_player->video()->subtitleIds();
-    for (int i = 0; i < descr.size(); ++i)
-        ui->subtitleBox->addItem(descr.at(i), id.at(i));
-    ui->subtitleBox->setCurrentIndex(win->m_player->video()->subtitle());
+    if (win->m_player->video()->subtitle() > 0)
+    {
+        qDebug() << win->m_player->video()->subtitleDescription();
+        qDebug() << win->m_player->video()->subtitleIds();
+        qDebug() << win->m_player->video()->subtitle();
+
+        QStringList descr = win->m_player->video()->subtitleDescription();
+        QList<int> id = win->m_player->video()->subtitleIds();
+        for (int i = 0; i < descr.size(); ++i)
+            ui->subtitleBox->addItem(descr.at(i), id.at(i));
+        ui->subtitleBox->setCurrentIndex(id.indexOf(win->m_player->video()->subtitle()));
+    }
 }
 
 void Options::videoSet(int id)

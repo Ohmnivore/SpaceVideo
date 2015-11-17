@@ -99,9 +99,9 @@ void Toolbar::onOpenBtnClicked()
     ui->TrackSlider->setEnabled(true);
     win->m_opt->setEnabled(true);
 
-    QTimer::singleShot(3000, win->m_opt, SLOT(updateVideo()));
+    QTimer::singleShot(2000, win->m_opt, SLOT(updateVideo()));
     QTimer::singleShot(3000, win->m_opt, SLOT(updateAudio()));
-    QTimer::singleShot(3000, win->m_opt, SLOT(updateSubtitles()));
+    QTimer::singleShot(4000, win->m_opt, SLOT(updateSubtitles()));
 }
 
 void Toolbar::onSubBtnClicked()
