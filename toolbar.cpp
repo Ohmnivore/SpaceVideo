@@ -97,6 +97,7 @@ void Toolbar::onOpenBtnClicked()
     ui->toggle->setEnabled(true);
     ui->VolumeSlider->setEnabled(true);
     ui->TrackSlider->setEnabled(true);
+    win->m_opt->setEnabled(true);
 
     QTimer::singleShot(3000, win->m_opt, SLOT(updateVideo()));
     QTimer::singleShot(3000, win->m_opt, SLOT(updateAudio()));

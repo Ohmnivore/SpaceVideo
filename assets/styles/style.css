@@ -143,13 +143,46 @@ QLabel {
     background-color: black;
 }
 
-/* Popups */
-QTextBrowser {
-    border: none;
-    background: @cgrey;
-
+QComboBox {
     color: white;
     font-weight: bold;
     font-size:14px;
     font-family: Gisha;
+
+    background: @cpurple;
+    border: 0px;
+    border-width: 0px;
+    padding: 4px;
+    height: 24px;
+}
+QComboBox::down-arrow {
+    border-width: 0px;
+    background: @cblue;
+    border-image: url(:/images/assets/images/appbar.chevron.down.png);
+    width: 32px;
+    height: 32px;
+}
+QComboBox::down-arrow:on {
+    background: @cgreen;
+}
+QComboBox::drop-down {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    background: @cblue;
+    width: 32px;
+    height: 32px;
+}
+QComboBox::drop-down:on {
+    background: @cgreen;
+}
+QComboBox QAbstractItemView {
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    font-family: Gisha;
+
+    background-color: @corange;
+    selection-background-color: @cyellow;
+    border: 0px;
 }
