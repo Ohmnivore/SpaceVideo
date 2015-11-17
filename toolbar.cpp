@@ -1,5 +1,6 @@
 #include "toolbar.h"
 #include "ui_toolbar.h"
+#include "options.h"
 
 #include <QString>
 #include <QFileDialog>
@@ -28,6 +29,7 @@ Toolbar::Toolbar(MainWindow *parent) :
     connect(ui->fullscreen, &QPushButton::clicked, this, &Toolbar::onFullscreenBtnClicked);
     connect(ui->open, &QPushButton::clicked, this, &Toolbar::onOpenBtnClicked);
     connect(ui->sub, &QPushButton::clicked, this, &Toolbar::onSubBtnClicked);
+    connect(ui->options, &QPushButton::clicked, this, &Toolbar::onOptionsBtnClicked);
     connect(ui->minimize, &QPushButton::clicked, this, &Toolbar::onMinimizeBtnClicked);
     connect(ui->VolumeSlider, SIGNAL(valueChanged(int)), this, SLOT(onVSliderChanged(int)));
     connect(ui->TrackSlider, SIGNAL(sliderReleased()), this, SLOT(onHSliderChanged()));
@@ -42,7 +44,6 @@ void Toolbar::appear()
 {
     appearing = true;
     show();
-    win->setCursor(Qt::ArrowCursor);
 }
 
 void Toolbar::disappear()
@@ -65,14 +66,20 @@ void Toolbar::onToggleBtnClicked()
     }
 }
 
+void Toolbar::maximize()
+{
+    win->showMaximized();
+}
+void Toolbar::fullscreen()
+{
+    win->showFullScreen();
+}
 void Toolbar::onFullscreenBtnClicked()
 {
     if (win->windowState().testFlag(Qt::WindowFullScreen))
-        win->showMaximized();
+        QTimer::singleShot(0, this, SLOT(maximize()));
     else
-    {
-        win->showFullScreen();
-    }
+        QTimer::singleShot(0, this, SLOT(fullscreen()));
 }
 
 void Toolbar::onOpenBtnClicked()
@@ -87,6 +94,8 @@ void Toolbar::onOpenBtnClicked()
     ui->toggle->setEnabled(true);
     ui->VolumeSlider->setEnabled(true);
     ui->TrackSlider->setEnabled(true);
+
+    win->m_opt->updateAV();
 }
 
 void Toolbar::onSubBtnClicked()
@@ -95,13 +104,24 @@ void Toolbar::onSubBtnClicked()
     if (file.isEmpty())
         return;
     win->m_player->video()->setSubtitleFile(file);
-    qDebug() << win->m_player->video()->subtitleDescription();
-    qDebug() << win->m_player->video()->subtitleIds();
+    win->m_opt->updateSubtitles();
 }
 
-void Toolbar::onMinimizeBtnClicked()
+void Toolbar::onOptionsBtnClicked()
+{
+    if (win->m_opt->isHidden())
+        win->m_opt->show();
+    else
+        win->m_opt->hide();
+}
+
+void Toolbar::minimize()
 {
     win->showMinimized();
+}
+void Toolbar::onMinimizeBtnClicked()
+{
+    QTimer::singleShot(0, this, SLOT(minimize()));
 }
 
 void Toolbar::onVSliderChanged(int value)
@@ -119,6 +139,7 @@ void Toolbar::onMouseMove()
     moveTimer->start(moveTimer->interval());
     if (!appearing)
         appear();
+    win->setCursor(Qt::ArrowCursor);
 }
 
 void Toolbar::onMouseTimerTimeout()

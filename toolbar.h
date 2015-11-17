@@ -28,9 +28,13 @@ public:
 
 public slots:
     void onToggleBtnClicked();
+    void maximize();
+    void fullscreen();
     void onFullscreenBtnClicked();
     void onOpenBtnClicked();
     void onSubBtnClicked();
+    void minimize();
+    void onOptionsBtnClicked();
     void onMinimizeBtnClicked();
     void onMouseTimerTimeout();
     void onUpdateTimerTimeout();

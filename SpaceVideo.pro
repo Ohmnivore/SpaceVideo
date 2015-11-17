@@ -14,13 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    toolbar.cpp
+    toolbar.cpp \
+    options.cpp
 
 HEADERS  += mainwindow.h \
-    toolbar.h
+    toolbar.h \
+    options.h
 
 FORMS    += mainwindow.ui \
-    toolbar.ui
+    toolbar.ui \
+    options.ui
 
 RESOURCES += \
     assets.qrc

@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtAV>
 
 #include <VLCQtCore/Common.h>
 #include <VLCQtCore/Instance.h>
@@ -14,6 +13,7 @@ class MainWindow;
 }
 
 class Toolbar;
+class Options;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -22,6 +22,7 @@ public:
     VlcInstance* m_inst;
     VlcMediaPlayer* m_player;
     VlcWidgetVideo* m_vid;
+    Options* m_opt;
     Toolbar* m_t;
 
     explicit MainWindow(QWidget* parent = 0);

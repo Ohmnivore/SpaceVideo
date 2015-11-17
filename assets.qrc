@@ -8,6 +8,7 @@
         <file>assets/images/icon.png</file>
         <file>assets/images/appbar.app.minus.png</file>
         <file>assets/images/appbar.control.pause.png</file>
+        <file>assets/images/appbar.cog.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>assets/fonts/AlteHaasGroteskRegular.ttf</file>

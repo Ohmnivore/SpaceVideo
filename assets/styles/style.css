@@ -121,15 +121,26 @@ QLabel {
     background-color: @cgreen;
 }
 
-#minimize {
+#options {
     background-color: @cgreylight;
+    border-image: url(:/images/assets/images/appbar.cog.png);
+}
+#options:hover {
+    background-color: @cblue;
+}
+#options:pressed {
+    background-color: @cgreylight;
+}
+
+#minimize {
+    background-color: black;
     border-image: url(:/images/assets/images/appbar.app.minus.png);
 }
 #minimize:hover {
     background-color: @cblue;
 }
 #minimize:pressed {
-    background-color: @cpurple;
+    background-color: black;
 }
 
 /* Popups */

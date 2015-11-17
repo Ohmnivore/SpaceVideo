@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "toolbar.h"
+#include "options.h"
 
 #include <QFile>
 
@@ -33,14 +34,21 @@ MainWindow::MainWindow(QWidget *parent) :
     m_vid->setMinimumSize(640, 480);
 
     m_t = new Toolbar(this);
+    m_opt = new Options(this);
+    m_opt->hide();
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (m_t != 0)
+    if (event->type() == QEvent::UpdateRequest)
+    {
         m_t->move(
             m_vid->width() / 2.0 - m_t->width() / 2.0,
             m_vid->height() - m_t->height());
+        m_opt->move(
+            m_vid->width() / 2.0 - m_opt->width() / 2.0,
+            0);
+    }
 
     if (event->type() == QEvent::MouseMove)
         m_t->onMouseMove();
