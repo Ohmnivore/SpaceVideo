@@ -42,12 +42,14 @@ void Toolbar::appear()
 {
     appearing = true;
     show();
+    win->setCursor(Qt::ArrowCursor);
 }
 
 void Toolbar::disappear()
 {
     appearing = false;
     hide();
+    win->setCursor(Qt::BlankCursor);
 }
 
 void Toolbar::onToggleBtnClicked()
