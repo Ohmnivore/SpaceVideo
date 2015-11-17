@@ -5,6 +5,9 @@
 
 #include <VLCQtCore/Audio.h>
 #include <VLCQtCore/Video.h>
+#include <VLCQtCore/Media.h>
+#include <VLCQtCore/Enums.h>
+#include <VLCQtCore/Stats.h>
 
 Options::Options(MainWindow* parent) :
     QWidget(parent),
@@ -26,12 +29,8 @@ Options::~Options()
 void Options::updateVideo()
 {
     ui->videoBox->clear();
-    if (win->m_player->video()->track() > 0)
+    if (win->m_player->video()->trackCount() > 0)
     {
-        qDebug() << win->m_player->video()->trackDescription();
-        qDebug() << win->m_player->video()->trackIds();
-        qDebug() << win->m_player->video()->track();
-
         QStringList descr = win->m_player->video()->trackDescription();
         QList<int> id = win->m_player->video()->trackIds();
         for (int i = 0; i < descr.size(); ++i)
@@ -43,12 +42,8 @@ void Options::updateVideo()
 void Options::updateAudio()
 {
     ui->audioBox->clear();
-    if (win->m_player->audio()->track() > 0)
+    if (win->m_player->audio()->trackCount() > 0)
     {
-        qDebug() << win->m_player->audio()->trackDescription();
-        qDebug() << win->m_player->audio()->trackIds();
-        qDebug() << win->m_player->audio()->track();
-
         QStringList descr = win->m_player->audio()->trackDescription();
         QList<int> id = win->m_player->audio()->trackIds();
         for (int i = 0; i < descr.size(); ++i)
@@ -60,12 +55,8 @@ void Options::updateAudio()
 void Options::updateSubtitles()
 {
     ui->subtitleBox->clear();
-    if (win->m_player->video()->subtitle() > 0)
+    if (win->m_player->video()->subtitleCount() > 0)
     {
-        qDebug() << win->m_player->video()->subtitleDescription();
-        qDebug() << win->m_player->video()->subtitleIds();
-        qDebug() << win->m_player->video()->subtitle();
-
         QStringList descr = win->m_player->video()->subtitleDescription();
         QList<int> id = win->m_player->video()->subtitleIds();
         for (int i = 0; i < descr.size(); ++i)
