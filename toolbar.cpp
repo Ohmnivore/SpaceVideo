@@ -69,13 +69,16 @@ void Toolbar::onToggleBtnClicked()
 void Toolbar::maximize()
 {
     win->showMaximized();
+    appear();
 }
 void Toolbar::fullscreen()
 {
     win->showFullScreen();
+    appear();
 }
 void Toolbar::onFullscreenBtnClicked()
 {
+    hide();
     if (win->windowState().testFlag(Qt::WindowFullScreen))
         QTimer::singleShot(0, this, SLOT(maximize()));
     else
@@ -95,7 +98,9 @@ void Toolbar::onOpenBtnClicked()
     ui->VolumeSlider->setEnabled(true);
     ui->TrackSlider->setEnabled(true);
 
-    win->m_opt->updateAV();
+    QTimer::singleShot(3000, win->m_opt, SLOT(updateVideo()));
+    QTimer::singleShot(3000, win->m_opt, SLOT(updateAudio()));
+    QTimer::singleShot(3000, win->m_opt, SLOT(updateSubtitles()));
 }
 
 void Toolbar::onSubBtnClicked()
@@ -104,7 +109,7 @@ void Toolbar::onSubBtnClicked()
     if (file.isEmpty())
         return;
     win->m_player->video()->setSubtitleFile(file);
-    win->m_opt->updateSubtitles();
+    QTimer::singleShot(3000, win->m_opt, SLOT(updateSubtitles()));
 }
 
 void Toolbar::onOptionsBtnClicked()
@@ -118,9 +123,11 @@ void Toolbar::onOptionsBtnClicked()
 void Toolbar::minimize()
 {
     win->showMinimized();
+    appear();
 }
 void Toolbar::onMinimizeBtnClicked()
 {
+    hide();
     QTimer::singleShot(0, this, SLOT(minimize()));
 }
 

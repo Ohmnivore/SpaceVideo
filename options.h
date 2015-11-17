@@ -18,8 +18,14 @@ public:
 
     explicit Options(MainWindow *parent = 0);
     ~Options();
-    void updateAV();
+
+public slots:
+    void updateVideo();
+    void updateAudio();
     void updateSubtitles();
+    void videoSet(int);
+    void audioSet(int);
+    void subtitleSet(int);
 
 private:
     Ui::Options *ui;
