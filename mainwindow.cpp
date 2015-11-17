@@ -61,4 +61,5 @@ MainWindow::~MainWindow()
     delete m_inst;
     delete m_vid;
     delete m_t;
+    delete m_opt;
 }

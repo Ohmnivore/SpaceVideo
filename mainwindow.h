@@ -28,9 +28,6 @@ public:
     explicit MainWindow(QWidget* parent = 0);
     ~MainWindow();
     bool eventFilter(QObject*, QEvent*);
-
-private:
-    Ui::MainWindow* ui;
 };
 
 #endif // MAINWINDOW_H

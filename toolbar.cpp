@@ -37,6 +37,8 @@ Toolbar::Toolbar(MainWindow *parent) :
 
 Toolbar::~Toolbar()
 {
+    delete moveTimer;
+    delete updateTimer;
     delete ui;
 }
 
