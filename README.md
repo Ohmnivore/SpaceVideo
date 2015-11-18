@@ -1,3 +1,5 @@
+![](screenshotsmall.png)
+
 # What is it?
 * SpaceVideo is a minimal video player
 * Based on libVLC, so it supports the same range of formats that VLC does
