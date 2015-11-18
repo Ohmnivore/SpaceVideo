@@ -1,4 +1,4 @@
-![](screenshotsmall.png)
+![](screenshot.png)
 
 # What is it?
 * SpaceVideo is a minimal video player
